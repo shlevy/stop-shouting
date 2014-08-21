@@ -49,8 +49,6 @@ quietTree = (parent) ->
 
   return
 
-quietTree document.documentElement
-
 observer = new MutationObserver (records) ->
   for record in records
     if record.type is "characterData"
