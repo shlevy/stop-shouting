@@ -34,10 +34,10 @@ quietNode = (text) ->
 
 # Quiet all text nodes in a tree
 quietTree = (parent) ->
-  # Filter out strings in scripts
+  # Filter out strings in scripts and CSS
   exclude = acceptNode: (node) ->
     parent = node.parentElement
-    if parent? and parent.tagName.toUpperCase() isnt "SCRIPT"
+    if parent? and not (parent.tagName.toUpperCase() in [ "SCRIPT", "STYLE" ])
       NodeFilter.FILTER_ACCEPT
     else
       NodeFilter.FILTER_REJECT
