@@ -48,3 +48,18 @@ quietTree = (parent) ->
     quietNode node
 
   return
+
+quietTree document.documentElement
+
+observer = new MutationObserver (records) ->
+  for record in records
+    if record.type is "characterData"
+      quietNode record.target
+    else
+      quietTree record.target
+  return
+
+observer.observe document.documentElement,
+  childList: true
+  subtree: true
+  characterData: true
